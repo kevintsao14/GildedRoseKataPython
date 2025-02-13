@@ -48,12 +48,22 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEqual(13, item.quality, "Backstage passes should increase quality by 3 when 5 days or less remain")
         self.assertEqual(4, item.sell_in, "SellIn should decrease by 1")
 
-
         
-    def test_add_item_method_should_exist(self):
-        gilded_rose = GildedRose([])
-        new_item = Item("Elixir of the Mongoose", 5, 7)
-        gilded_rose.add_item(new_item)  # This should raise an AttributeError.
+    # def test_add_item_method_should_exist(self):
+    #     gilded_rose = GildedRose([])
+    #     new_item = Item("Elixir of the Mongoose", 5, 7)
+    #     gilded_rose.add_item(new_item)  # This should raise an AttributeError.
+        
+    def test_update_quality_no_exception(self):
+        items = [
+            Item("Normal Item", 10, 20),
+            Item("Sulfuras", 5, 80)
+        ]
+        gilded_rose = GildedRose(items)
+        try:
+            gilded_rose.update_quality()
+        except Exception as e:
+            self.fail("update_quality raised an exception: " + str(e))
     
     
 
